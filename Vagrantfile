@@ -8,10 +8,10 @@ Vagrant::Config.run do |config|
   end
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "squeeze32"
-    # (everything else is commented)
-    # ...
-
+  config.vm.box = "lucid32"
+  config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+  
   # Forward guest port 80 to host port 8888 and name mapping
-  config.vm.forward_port 80, 8888
+  config.vm.forward_port 80, 8000
+  config.vm.forward_port 22, 2222
 end
