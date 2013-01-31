@@ -11,16 +11,19 @@ class apache {
     require => Package["apache2"]
   }
 
-  file { "/etc/apache2/sites-available/vagrant_webroot":
+  file { "/etc/apache2/sites-available/default":
     ensure => present,
-    source => "/vagrant/manifests/vagrant_webroot",
+    source => "/vagrant/configfiles/apache_vhost",
     require => Package["apache2"]
   }
 
-  file { "/etc/apache2/sites-enabled/vagrant_webroot":
+  file { "/etc/apache2/sites-enabled/default":
     ensure => link,
-    target => "/etc/apache2/sites-available/vagrant_webroot",
-    require => File["/etc/apache2/sites-available/vagrant_webroot"]
+    target => "/etc/apache2/sites-available/default",
+    require => File["/etc/apache2/sites-available/default"]
+  }
+  exec { "update_apache_user":
+    command => "sed -i 's/www-data/vagrant/g' /etc/apache2/envvars"
   }
 
   # starts the apache2 service once the packages installed, and monitors changes to its configuration files and reloads if nesessary
@@ -29,7 +32,7 @@ class apache {
     require => Package["apache2"],
     subscribe => [
       File["/etc/apache2/mods-enabled/rewrite.load"],
-      File["/etc/apache2/sites-available/vagrant_webroot"]
+      File["/etc/apache2/sites-available/default"]
     ],
   }
 }
