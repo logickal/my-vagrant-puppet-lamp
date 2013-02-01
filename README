@@ -1,4 +1,4 @@
-= Package list
+# Package list
 - apache2
 - php5
 - php5-cli
@@ -11,16 +11,16 @@
 - git-core
 
 
-= Settings/Configs
-== Global
+# Settings/Configs
+## Global
 - added LC_ALL=en.US-UTF8 to root & vragant .bash_profile to suppress mac terminal errors
 
-== Apache
+## Apache
 - mod rewrite enabled
 - webroot: /vagrant/httpdocs
 - apache2 runs as vagrant:vagrant
 
-== MySQL
+## MySQL
 - root password set
 - default user: vagrant/vagrant
 
