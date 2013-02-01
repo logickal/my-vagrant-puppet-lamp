@@ -1,13 +1,26 @@
-[Package included]
+= Package list
+- apache2
+- php5
+- php5-cli
+- php5-mysql
+- php5-dev
+- php5-gd
+- mysql-server
+- curl
+- vim
+- git-core
 
-apache2 - rewrite mode enabled, having virtual host with config - refer manifest/vagrant_webroot.sample
-php5
-php5-cli
-php5-mysql
-php5-dev
-php5-gd
-mysql-server
-curl
-vim
-git
+
+= Settings/Configs
+== Global
+- added LC_ALL=en.US-UTF8 to root & vragant .bash_profile to suppress mac terminal errors
+
+== Apache
+- mod rewrite enabled
+- webroot: /vagrant/httpdocs
+- apache2 runs as vagrant:vagrant
+
+== MySQL
+- root password set
+- default user: vagrant/vagrant
 

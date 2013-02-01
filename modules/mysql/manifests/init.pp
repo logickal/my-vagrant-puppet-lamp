@@ -1,5 +1,7 @@
 class mysql {
-  $mysqlpw = "qwe123"
+  $mysqluser   = "vagrant"
+  $mysqlpw     = "vagrant"
+  $mysqlrootpw = "qwe123"
 
   package { "mysql-server":
     ensure => present,
@@ -11,9 +13,15 @@ class mysql {
     require => Package["mysql-server"],
   }
 
-  exec { "set-mysql-passwrod":
-    unless => "mysqladmin -uroot -p$mysqlpw status",
-    command => "mysqladmin -uroot password $mysqlpw",
+  exec { "set-mysql-root-password":
+    unless => "mysqladmin -uroot -p$mysqlrootpw status",
+    command => "mysqladmin -uroot password $mysqlrootpw",
     require => Service["mysql"],
   }
+  exec { "set-mysql-password":
+    unless => "mysqladmin -u$mysqluser -p$mysqlpw status",
+    command => "echo \"GRANT ALL ON *.* TO '$mysqluser'@'%' IDENTIFIED BY '$mysqlpw'\" | mysql -uroot -p$mysqlrootpw",
+    require => Service["mysql"],
+  }
+  
 }
