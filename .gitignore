@@ -1,4 +1,4 @@
 .vagrant
-/sites
+/sites/*
 !/sites/test
 !/sites/test/*
