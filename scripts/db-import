@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sqlfile='/vagrant/httpdocs/sql/dump.sql'
+dbname='vagrant'
+dbuser='vagrant'
+dbpass='vagrant'
+
+if [ -a $sqlfile ] 
+  then
+  echo "-- dumping $sqlfile into $dbname"
+  cat $sqlfile | mysql -u$dbuser -p$dbpass $dbname
+  echo
+else
+  echo "ERROR: $sqlfile does not exist"
+fi
+
+

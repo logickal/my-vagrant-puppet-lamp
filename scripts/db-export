@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sqlfile='/vagrant/httpdocs/sql/dump.sql'
+dbname='vagrant'
+dbuser='vagrant'
+dbpass='vagrant'
+
+if [ -a $sqlfile ] 
+  then
+  echo "-- dumpfile exists, making backup copy"
+  ts=`date +%s`
+  cat $sqlfile > $sqlfile.$ts
+fi
+
+mysqldump -u$dbuser -p$dbpass $dbname > $sqlfile

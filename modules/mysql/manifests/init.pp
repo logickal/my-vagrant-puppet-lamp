@@ -1,6 +1,7 @@
 class mysql {
   $mysqluser   = "vagrant"
   $mysqlpw     = "vagrant"
+  $mysqldb     = "vagrant"
   $mysqlrootpw = "qwe123"
 
   package { "mysql-server":
@@ -23,5 +24,10 @@ class mysql {
     command => "echo \"GRANT ALL ON *.* TO '$mysqluser'@'%' IDENTIFIED BY '$mysqlpw'\" | mysql -uroot -p$mysqlrootpw",
     require => Service["mysql"],
   }
-  
+  exec { "createdb":
+    unless => "mysqlshow -u$mysqluser -p$mysqlpw $mysqldb",
+    command => "mysqladmin -u$mysqluser -p$mysqlpw create $mysqldb",
+    require => Exec["set-mysql-password"],
+  }
+
 }
