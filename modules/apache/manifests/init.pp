@@ -25,6 +25,9 @@ class apache {
   exec { "update_apache_user":
     command => "sed -i 's/www-data/vagrant/g' /etc/apache2/envvars"
   }
+  exec { "update_apache_lockfile":
+    command => "chown vagrant:vagrant /var/lock/apache2"
+  }
 
   # starts the apache2 service once the packages installed, and monitors changes to its configuration files and reloads if nesessary
   service { "apache2":
