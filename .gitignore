@@ -1,3 +1,4 @@
 .vagrant
 /vhost/*
-!/vhost/empty
+!/vhost/dummy
+
