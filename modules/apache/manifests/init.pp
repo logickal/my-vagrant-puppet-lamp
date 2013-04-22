@@ -33,6 +33,8 @@ class apache {
   service { "apache2":
     ensure => running,
     require => Package["apache2"],
+    require => Exec["update_apache_lockfile"],
+    require => Exec["update_apache_user"],
     subscribe => [
       File["/etc/apache2/mods-enabled/rewrite.load"],
       File["/etc/apache2/sites-available/default"]

@@ -1,5 +1,3 @@
 .vagrant
-/httpdocs
-/sites/*
-!/sites/test
-!/sites/test/*
+/vhost/*
+!/vhost/empty
