@@ -8,10 +8,9 @@ Vagrant::Config.run do |config|
   end
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "debian607-64"
-  # config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/debian-607-x64-vbox4210.box"
-  config.vm.share_folder "httpdocs", "/httpdocs", "httpdocs", :owner=> 'vagrant', :group=>'vagrant', :extra => 'dmode=775,fmode=775'
+  config.vm.box = "lucid64"
+  config.vm.box_url = "http://files.vagrantup.com/lucid64.box"
+  #config.vm.share_folder "vhost", "/vhost", "vhost", :owner=> 'vagrant', :group=>'vagrant', :extra => 'dmode=777,fmode=777'
   
   # Forward guest port 80 to host port 8888 and name mapping
   # config.vm.forward_port 80, 8000
